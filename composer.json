@@ -1,0 +1,12 @@
+{
+  "name": "test/ga",
+  "authors": [
+    {
+      "name": "Artem Gunar",
+      "email": "a.gunar@kt-team.de"
+    }
+  ],
+  "require": {
+    "google/apiclient": "^2.0"
+  }
+}
