@@ -72,3 +72,32 @@ if(!empty($config['metrics']['conversion'])) {
         echo $e->getMessage();
     }
 }
+
+// --------
+
+
+// GA Users
+if(!empty($config['metrics']['users'])) {
+    try {
+        _log('GA Users start');
+
+        // Users Report
+        $usersResponse = getReport($analytics, $config['metrics']['users']['ga']);
+
+        $usersResult = getResult($usersResponse);
+        $usersResult = round($usersResult, 2);
+
+        // Debug or Send
+        if (APM_DEBUG) {
+            echo 'Users: ' . $usersResult . "\n";
+        } else {
+            sendToApm($usersResult, $config['metrics']['users']['apm']);
+            echo 'Done';
+        }
+
+        _log('GA Users result: ' . $usersResult);
+    } catch (\Exception $e) {
+        _log('GA Users - ERROR!!! ' . $e->getMessage());
+        echo $e->getMessage();
+    }
+}
